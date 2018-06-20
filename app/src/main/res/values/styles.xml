@@ -48,4 +48,11 @@
         <item name="android:textSize">@dimen/button_text_size</item>
     </style>
 
+    <style name="PosterImage">
+        <item name="android:layout_width">@dimen/poster_default_width</item>
+        <item name="android:layout_height">@dimen/poster_default_height</item>
+        <item name="android:layout_margin">@dimen/default_margin</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

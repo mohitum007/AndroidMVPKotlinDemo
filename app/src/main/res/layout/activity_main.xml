@@ -28,15 +28,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         style="@style/SectionPadded"
-        android:layout_above="@+id/nextButton"
         android:layout_below="@+id/searchButton"/>
-
-    <Button
-        android:id="@+id/nextButton"
-        style="@style/Button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/button_next_page_text"
-        android:visibility="gone"/>
 
 </RelativeLayout>

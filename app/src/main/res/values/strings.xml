@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidMVPKotlinDemo</string>
+
+    <string name="demo_info_text">Demo: Search for movie from IMDb database.\n API's used from: http://www.omdbapi.com/</string>
+    <string name="movie_name_edit_text_hint">Enter a movie name</string>
+    <string name="button_search_text">Search</string>
+    <string name="button_next_page_text">Next Page</string>
+</resources>

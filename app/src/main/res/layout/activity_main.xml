@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/RootLayout"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/demo_info_label"
+        style="@style/Label"
+        android:text="@string/demo_info_text"
+        android:gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/movieNameEditText"
+        style="@style/Field"
+        android:layout_below="@+id/demo_info_label"
+        android:inputType="text"
+        android:hint="@string/movie_name_edit_text_hint"
+        android:maxLines="1"/>
+
+    <Button
+        android:id="@+id/searchButton"
+        style="@style/Button"
+        android:layout_below="@+id/movieNameEditText"
+        android:text="@string/button_search_text"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        style="@style/SectionPadded"
+        android:layout_above="@+id/nextButton"
+        android:layout_below="@+id/searchButton"/>
+
+    <Button
+        android:id="@+id/nextButton"
+        style="@style/Button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/button_next_page_text"
+        android:visibility="gone"/>
+
+</RelativeLayout>

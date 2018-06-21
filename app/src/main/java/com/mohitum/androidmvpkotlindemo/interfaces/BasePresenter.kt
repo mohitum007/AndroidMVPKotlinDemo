@@ -1,5 +1,7 @@
 package com.mohitum.androidmvpkotlindemo.interfaces
 
+import android.content.Context
+
 interface BasePresenter<in T> {
 
     /**

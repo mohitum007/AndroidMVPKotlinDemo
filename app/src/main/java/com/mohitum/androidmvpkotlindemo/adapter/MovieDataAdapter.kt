@@ -10,7 +10,7 @@ import com.mohitum.androidmvpkotlindemo.model.Search
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_row.view.*
 
-class MovieDataAdapter(private val movieData: MovieData):
+class MovieDataAdapter(var movieData: MovieData):
         RecyclerView.Adapter<MovieDataAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

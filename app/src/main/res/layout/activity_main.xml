@@ -25,9 +25,27 @@
         android:layout_below="@+id/movieNameEditText"
         android:text="@string/button_search_text"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        style="@style/SectionPadded"
-        android:layout_below="@+id/searchButton"/>
+    <RelativeLayout
+        style="@style/MatchLayout"
+        android:layout_below="@+id/searchButton">
+
+        <ProgressBar
+            android:id="@+id/loadingProgress"
+            style="@style/WrapLayout"
+            android:visibility="gone"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/error_label"
+            style="@style/Label"
+            android:text="@string/search_error_no_text"
+            android:gravity="center_horizontal"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:visibility="gone"
+            style="@style/SectionPadded"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

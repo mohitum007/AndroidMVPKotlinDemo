@@ -17,6 +17,18 @@ interface MainActivityContract {
         fun showMessage(@StringRes idString: Int)
 
         /**
+         * Shows error messages while fetching list in MainActivity
+         *
+         * @param errorString The string we want to show
+         */
+        fun showErrorMessage(errorString: String?)
+
+        /**
+         * Shows loading progress in MainActivity
+         */
+        fun showLoadingProgress()
+
+        /**
          * Calls the MainActivity to update the recycler view adapter
          *
          * @param movieData The list of Movies

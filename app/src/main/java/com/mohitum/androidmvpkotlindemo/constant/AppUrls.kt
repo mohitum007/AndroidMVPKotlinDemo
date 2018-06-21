@@ -1,5 +1,8 @@
 package com.mohitum.androidmvpkotlindemo.constant
 
+/**
+ * Application Urls and related constants for accessing the movies database
+ */
 object AppUrls {
 
     const val MOVIEDB_BASE_URL = "http://www.omdbapi.com/"

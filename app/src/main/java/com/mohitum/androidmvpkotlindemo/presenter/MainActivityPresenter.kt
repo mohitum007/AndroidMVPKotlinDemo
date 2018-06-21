@@ -1,35 +1,53 @@
 package com.mohitum.androidmvpkotlindemo.presenter
 
-import android.content.Context
 import com.mohitum.androidmvpkotlindemo.R
 import com.mohitum.androidmvpkotlindemo.constant.AppUrls
-import com.mohitum.androidmvpkotlindemo.interfaces.MainActivityContract
+import com.mohitum.androidmvpkotlindemo.interfaces.MainActivityView
+import com.mohitum.androidmvpkotlindemo.interfaces.Presenter
 import com.mohitum.androidmvpkotlindemo.model.MovieData
 import com.mohitum.androidmvpkotlindemo.network.ApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class MainActivityPresenter: MainActivityContract.Presenter {
+/**
+ * Main presenter class for MainActivity
+ *
+ * @author Mohit Sharma
+ */
+class MainActivityPresenter: Presenter {
 
     /**
      * The reference to MainActivityView
      */
-    var mView: MainActivityContract.MainActivityView? = null
+    var mView: MainActivityView? = null
 
     val apiService by lazy {
         ApiService.create()
     }
     var disposable: Disposable? = null
 
-    override fun attach(view: MainActivityContract.MainActivityView) {
+    /**
+     * Link view with the presenter
+     *
+     * @param view MainActivity view instance
+     */
+    override fun attach(view: MainActivityView) {
         this.mView = view
     }
 
+    /**
+     * Unlink view with the presenter
+     */
     override fun detach() {
         this.mView = null
     }
 
+    /**
+     * Search for a movie from the remote database
+     *
+     * @param text search string
+     */
     override fun searchMovie(text: String) {
         if (text.isEmpty() && mView != null) {
             mView?.showMessage(R.string.search_error_no_text)
@@ -49,10 +67,20 @@ class MainActivityPresenter: MainActivityContract.Presenter {
                         )
     }
 
+    /**
+     * Handle success result
+     *
+     * @param result movies data result
+     */
     private fun onResult(result: MovieData){
         mView?.updateMoviesAdapter(result)
     }
 
+    /**
+     * Handle error response
+     *
+     * @param error the error throwable
+     */
     private fun onError(error: Throwable){
         mView?.showErrorMessage(error.message)
     }

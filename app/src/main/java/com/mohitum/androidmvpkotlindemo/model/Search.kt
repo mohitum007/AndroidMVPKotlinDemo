@@ -1,5 +1,8 @@
 package com.mohitum.androidmvpkotlindemo.model
 
+/**
+ * Single movie data class
+ */
 data class Search(
         val Title: String,
         val Year: String,

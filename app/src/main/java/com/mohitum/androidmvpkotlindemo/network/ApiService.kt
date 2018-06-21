@@ -11,12 +11,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Retrofit based ApiService interface
+ */
 interface ApiService {
 
+    /**
+     * Get movies data service
+     */
     @GET("?")
     fun getMovies(@Query(AppUrls.MOVIEDB_MOVIE_SEARCH) searchString: String,
                   @Query(AppUrls.MOVIEDB_API_KEY_QUERY) apiKey: String): Observable<MovieData>
 
+    /**
+     * Retrofit instance creation with debug logging interceptor
+     */
     companion object {
         fun create(): ApiService {
 

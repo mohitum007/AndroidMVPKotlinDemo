@@ -10,6 +10,11 @@ import com.mohitum.androidmvpkotlindemo.model.Search
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_row.view.*
 
+/**
+ * Recycler view adapter class for inflating the movie data
+ *
+ * @author Mohit Sharma
+ */
 class MovieDataAdapter(var movieData: MovieData):
         RecyclerView.Adapter<MovieDataAdapter.ViewHolder>() {
 
@@ -26,10 +31,17 @@ class MovieDataAdapter(var movieData: MovieData):
         holder.bindItems(movieData.Search[position])
     }
 
-
+    /**
+     * View Holder for binding a single row/item in the recycler view
+     */
     class ViewHolder(private val containerView: View)
         : RecyclerView.ViewHolder(containerView) {
 
+        /**
+         * Binds UI elements with movie data
+         *
+         * @param item movie item
+         */
         fun bindItems(item: Search) {
             containerView.movieTitle.text = item.Title
             var description: String = "Type: ${item.Type}, Released: ${item.Year}"

@@ -7,15 +7,20 @@ import android.view.View
 import android.widget.Toast
 import com.mohitum.androidmvpkotlindemo.R
 import com.mohitum.androidmvpkotlindemo.adapter.MovieDataAdapter
-import com.mohitum.androidmvpkotlindemo.interfaces.MainActivityContract
+import com.mohitum.androidmvpkotlindemo.interfaces.MainActivityView
 import com.mohitum.androidmvpkotlindemo.model.MovieData
 import com.mohitum.androidmvpkotlindemo.presenter.MainActivityPresenter
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityView {
+/**
+ * Main activity view class
+ *
+ * @author Mohit Sharma
+ */
+class MainActivity : AppCompatActivity(), MainActivityView {
 
     /**
-     * The [MainActivityPresenter] for this view
+     * The MainActivityPresenter for this view
      */
     private var mPresenter = MainActivityPresenter()
 
@@ -36,10 +41,20 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityView 
         super.onDestroy()
     }
 
+    /**
+     * Show toast messages
+     *
+     * @param idString resource id of the message from strings.xml
+     */
     override fun showMessage(idString: Int) {
         Toast.makeText(this, idString, Toast.LENGTH_LONG).show()
     }
 
+    /**
+     * Show error message in case of loading fails
+     *
+     * @param errorString The error message to be shown
+     */
     override fun showErrorMessage(errorString: String?) {
         recyclerView.visibility = View.GONE
         loadingProgress.visibility = View.GONE
@@ -47,6 +62,9 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityView 
         error_label.text = errorString
     }
 
+    /**
+     * Show loading progress view
+     */
     override fun showLoadingProgress() {
         recyclerView.visibility = View.GONE
         error_label.visibility = View.GONE
@@ -54,20 +72,19 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityView 
     }
 
     /**
-     * Create / update the [RecyclerView.getAdapter]
-     * @param searchResults The results obtained in [MainActivityPresenter.searchMovie]
+     * Create or update the recyclerView adapter
+     *
+     * @param movieData The moview search results obtained
      */
     override fun updateMoviesAdapter(movieData: MovieData) {
         recyclerView.visibility = View.VISIBLE
         error_label.visibility = View.GONE
         loadingProgress.visibility = View.GONE
         if (recyclerView.adapter is MovieDataAdapter) {
-            //Already an adapter, just needs to update
             val movieSearchAdapter = recyclerView.adapter as MovieDataAdapter
             movieSearchAdapter.movieData = movieData
             movieSearchAdapter.notifyDataSetChanged()
         } else {
-            //Create a new adapter
             recyclerView.adapter = MovieDataAdapter(movieData)
         }
     }

@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.mohitum.androidmvpkotlindemo.R
 import com.mohitum.androidmvpkotlindemo.adapter.MovieDataAdapter
@@ -33,7 +34,15 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        searchButton.setOnClickListener { mPresenter.searchMovie(movieNameEditText.text.toString()) }
+        searchButton.setOnClickListener { onSearchClick() }
+    }
+
+    /**
+     * Handle search button click event
+     */
+    fun onSearchClick() {
+        mPresenter.searchMovie(movieNameEditText.text.toString())
+        hideKeyboard()
     }
 
     override fun onDestroy() {
@@ -60,6 +69,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         loadingProgress.visibility = View.GONE
         error_label.visibility = View.VISIBLE
         error_label.text = errorString
+        hideKeyboard()
     }
 
     /**
@@ -87,6 +97,15 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         } else {
             recyclerView.adapter = MovieDataAdapter(movieData)
         }
+    }
+
+    /**
+     * Function to hide soft keyboard
+     */
+    fun hideKeyboard() {
+        val inputManager: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(currentFocus.windowToken, InputMethodManager.SHOW_FORCED)
+
     }
 
 }

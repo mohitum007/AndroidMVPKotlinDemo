@@ -1,5 +1,7 @@
 package com.mohitum.androidmvpkotlindemo.adapter
 
+import android.content.Intent
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +49,13 @@ class MovieDataAdapter(var movieData: MovieData):
             var description: String = "Type: ${item.Type}, Released: ${item.Year}"
             containerView.movieDescription.text = description
             Picasso.with(containerView.getContext()).load(item.Poster).into(containerView.moviePosterImage);
+            containerView.setOnClickListener{onItemClick(item)}
+        }
+
+        private fun onItemClick(item: Search) {
+            val uri = Uri.parse("https://www.imdb.com/title/${item.imdbID}")
+            val intents = Intent(Intent.ACTION_VIEW, uri)
+            containerView.getContext().startActivity(intents)
         }
     }
 }
